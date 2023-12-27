@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const MainPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const downloadRef = useRef(null); // Reference for download link
 
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -25,7 +26,8 @@ const MainPage = () => {
 
       const blob = await response.blob();
       const imageObjectURL = URL.createObjectURL(blob);
-      setSelectedImage(imageObjectURL); // Update the displayed image
+      setSelectedImage(imageObjectURL);
+      downloadRef.current.href = imageObjectURL; // Set download link
     } catch (error) {
       console.error("Error:", error);
     }
@@ -41,11 +43,13 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="bg-white w-screen h-screen p-8 rounded shadow-md text-center">
-        <h2 className="text-xl font-bold mb-6">IMAGE BACKGROUND REMOVER</h2>
-        <div>
+      <div className="bg-white w-screen h-screen p-8 rounded shadow-md text-center flex flex-col ">
+        <h2 className="text-xl font-bold mb-6">
+          IMAGE CROP USING CORNER POINTS
+        </h2>
+        <div className="mb-4">
           <label
-            className="block mb-2 p-7 text-sm font-800 text-gray-800 dark:text-gray-800"
+            className="block mb-2 pt-4 text-sm font-medium text-gray-800 dark:text-gray-800"
             htmlFor="upload-image"
           >
             Upload Image
@@ -55,34 +59,36 @@ const MainPage = () => {
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="text-sm text-grey-500
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-full file:border-0
-              file:text-sm file:font-semibold  file:text-black
-              hover:file:bg-pink-200
-            "
+            className="text-sm text-grey-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:text-black hover:file:bg-pink-200"
           />
         </div>
-        <div className="mt-4">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-            Result:
-          </label>
-          <div className="flex justify-center items-center w-full">
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Uploaded Preview"
-                className="border rounded max-w-xs max-h-48"
-              />
-            )}
-          </div>
+        <div className="image-container flex justify-around items-center w-full mb-6">
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Uploaded Preview"
+              className="border rounded max-w-xs max-h-48"
+            />
+          )}
         </div>
-        <button
-          onClick={handleRemoveBackground}
-          className="mt-6 w-1/7 bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600"
-        >
-          Remove
-        </button>
+        <div className="button-group justify-end">
+          <button
+            onClick={handleRemoveBackground}
+            className="bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600 mr-4"
+          >
+            Remove
+          </button>
+          <a
+            ref={downloadRef}
+            download="processed_image.jpg"
+            className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+          >
+            Download
+          </a>
+        </div>
+        <footer className="mt-auto py-3 text-center w-full">
+          <p>Made with <span role="img" aria-label="love">❤️</span></p>
+        </footer>
       </div>
     </>
   );

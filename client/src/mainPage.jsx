@@ -2,18 +2,43 @@ import React, { useState } from "react";
 
 const MainPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setSelectedImage(URL.createObjectURL(img));
+      setSelectedFile(img);
     }
   };
 
-  const handleRemoveBackground = () => {
-    // Placeholder for background removal logic
-    alert("Background removal not implemented yet.");
-  }; 
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) throw new Error("Image upload failed");
+
+      const blob = await response.blob();
+      const imageObjectURL = URL.createObjectURL(blob);
+      setSelectedImage(imageObjectURL); // Update the displayed image
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleRemoveBackground = async () => {
+    if (selectedFile) {
+      await handleFileUpload(selectedFile);
+    } else {
+      alert("Please select an image first.");
+    }
+  };
+
   return (
     <>
       <div className="bg-white w-screen h-screen p-8 rounded shadow-md text-center">

@@ -18,7 +18,7 @@ const MainPage = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch("https://imagecrop-cu5m.onrender.com/", {
         method: "POST",
         body: formData,
       });

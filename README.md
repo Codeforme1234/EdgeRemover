@@ -42,6 +42,6 @@ Backend: https://imagecrop-cu5m.onrender.com/
 
 ## Screenshots
 
-![Alt text](client\src\assets\Screenshot 2023-12-28 184329.png?raw=true "Before Uploading Image")
-![Alt text](client\src\assets\Screenshot 2023-12-28 185028.png?raw=true "After Uploading Image")
-![Alt text](client\src\assets\Screenshot 2023-12-28 185110.png?raw=true "After Cropping Image")
+[![mutt dark](https://github.com/Codeforme1234/EdgeRemover/blob/main/client/src/assets/Screenshot%202023-12-28%20184329.png)
+[![mutt dark](https://github.com/Codeforme1234/EdgeRemover/blob/main/client/src/assets/Screenshot%202023-12-28%20185028.png)
+[![mutt dark](https://github.com/Codeforme1234/EdgeRemover/blob/main/client/src/assets/Screenshot%202023-12-28%20185110.png)

@@ -1,8 +1,6 @@
-
 # EdgeRemover
 
 A ML project to identify the edges of a paper and then crop the paper. For the webapp, React+Vite and Flask is used along with Axios to Fetch API and TailwindCSS for Styling.
-
 
 ## Run Locally
 
@@ -18,7 +16,7 @@ Go to the project directory
   cd EdgeRemover
 ```
 
-To Install and Run Frontend 
+To Install and Run Frontend
 
 ```bash
   cd Client
@@ -35,14 +33,15 @@ To Install and Run Backend
   python app.py
 ```
 
-
 ## Deployment Links
+
 Hosted Links:-  
 Frontend: https://crop-fe.vercel.app/  
-Backend: https://imagecrop-cu5m.onrender.com/   
-** the backend is hosted on render and needed to be restart for use. : /
+Backend: https://imagecrop-cu5m.onrender.com/  
+\*\* the backend is hosted on render and needed to be restart for use.(unpaid service issues) : /
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+![Alt text](client\src\assets\Screenshot 2023-12-28 184329.png?raw=true "Before Uploading Image")
+![Alt text](client\src\assets\Screenshot 2023-12-28 185028.png?raw=true "After Uploading Image")
+![Alt text](client\src\assets\Screenshot 2023-12-28 185110.png?raw=true "After Cropping Image")
